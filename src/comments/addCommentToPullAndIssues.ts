@@ -9,7 +9,9 @@ export async function addCommentToPullAndIssues(
   commentStr: string
 ): Promise<void> {
   await useOctokit(async octokit => {
+    core.debug(`addTo before ${core.getInput('addTo', {required: true})}`)
     const addTo = core.getInput('addTo', {required: true}).toLowerCase()
+    core.debug(`addTo after`)
     let issueNumbers: number[] = []
     if (addTo === 'pull' || addTo === 'pullandissues') {
       issueNumbers.push(pullRequest.number)
